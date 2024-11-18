@@ -2,48 +2,48 @@ if (window.screen.width <= 1130) {
     function removeall() {
         $(".cir_border").css("border", "none");
     }
-    $("#sec").on("click", function () {
+    $("#sec").on("click", function() {
         removeall();
         $("#sec").css("border", "2px solid whitesmoke");
         $("#sec").css("border-radius", "20px");
     });
-    $("#pri").on("click", function () {
+    $("#pri").on("click", function() {
         removeall();
         $("#pri").css("border", "2px solid whitesmoke");
         $("#pri").css("border-radius", "20px");
     });
-    $("#tri").on("click", function () {
+    $("#tri").on("click", function() {
         removeall();
         $("#tri").css("border", "2px solid whitesmoke");
         $("#tri").css("border-radius", "20px");
     });
-    $("#quad").on("click", function () {
+    $("#quad").on("click", function() {
         removeall();
         $("#quad").css("border", "2px solid whitesmoke");
         $("#quad").css("border-radius", "20px");
     });
-    $("#quint").on("click", function () {
+    $("#quint").on("click", function() {
         removeall();
         $("#quint").css("border", "2px solid whitesmoke");
         $("#quint").css("border-radius", "20px");
     });
-    $("#hex").on("click", function () {
+    $("#hex").on("click", function() {
         removeall();
         $("#hex").css("border", "2px solid whitesmoke");
         $("#hex").css("border-radius", "20px");
     });
-    $("#hept").on("click", function () {
+    $("#hept").on("click", function() {
         removeall();
         $("#hept").css("border", "2px solid whitesmoke");
         $("#hept").css("border-radius", "20px");
     });
 }
 
-$("#about").on("mouseover", function () {
+$("#about").on("mouseover", function() {
     introAboutLogoTransition();
 });
 
-$("input").on("change", function () {
+$("input").on("change", function() {
     $("body").toggleClass("blue");
 });
 
@@ -72,7 +72,7 @@ checkbox.addEventListener("change", () => {
     const darkModeEnabled = checkbox.checked;
     document.body.classList.toggle("dark", darkModeEnabled); // Применение класса 'dark'
     localStorage.setItem("tourism_website_darkmode", darkModeEnabled); // Сохранение состояния в localStorage
-    
+
     // Воспроизведение звука с обработкой ошибок
     themeChangeSound.play().catch(error => {
         console.error("Ошибка воспроизведения звука: ", error);
@@ -84,7 +84,7 @@ checkbox.addEventListener("change", () => {
 
 let mybutton = document.getElementById("upbtn");
 
-window.onscroll = function () {
+window.onscroll = function() {
     scrollFunction();
 };
 
@@ -98,6 +98,7 @@ function scrollFunction() {
         mybutton.style.display = "none";
     }
 }
+
 function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -136,17 +137,17 @@ function updateNav() {
     });
 }
 
-function togle_change(){ 
-    var event1 = document.getElementById("first-events"); 
-    var event2 = document.getElementById("second-events"); 
- 
-    if (event1.style.display !== "none") { 
-        event1.style.display = "none"; 
-        event2.style.display = "block"; 
-      } else { 
-        event1.style.display = "block"; 
-        event2.style.display = "none"; 
-      } 
+function togle_change() {
+    var event1 = document.getElementById("first-events");
+    var event2 = document.getElementById("second-events");
+
+    if (event1.style.display !== "none") {
+        event1.style.display = "none";
+        event2.style.display = "block";
+    } else {
+        event1.style.display = "block";
+        event2.style.display = "none";
+    }
 }
 
 
@@ -175,7 +176,7 @@ function getGreeting() {
     return greeting;
 }
 
-// Функция для отображения приветствия на странице
+
 function displayGreeting() {
     const greeting = getGreeting();
     const greetingElement = document.getElementById('display-greeting');
@@ -204,65 +205,65 @@ let isTimeVisible = false;
 const showTimeButton = document.getElementById('show-time-btn');
 const displayTime = document.getElementById('display-time');
 if (showTimeButton) {
-    showTimeButton.addEventListener('click', function () {
+    showTimeButton.addEventListener('click', function() {
         if (isTimeVisible) {
             displayTime.textContent = ""; // Скрыть время
             isTimeVisible = false;
-            showTimeButton.textContent = "Show time"; 
+            showTimeButton.textContent = "Show time";
         } else {
             const currentTime = new Date().toLocaleTimeString();
             displayTime.textContent = currentTime; // Показать время
             isTimeVisible = true;
-            showTimeButton.textContent = "Hide time"; 
+            showTimeButton.textContent = "Hide time";
         }
     });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     // Получаем все ссылки навигации и секции
     const links = document.querySelectorAll(".nav-links .cir_border");
     const sections = document.querySelectorAll("header, section");
-  
+
     // Функция для удаления класса active у всех ссылок
     function clearActiveLinks() {
-      links.forEach((link) => link.classList.remove("active"));
+        links.forEach((link) => link.classList.remove("active"));
     }
-  
+
     // Обработчик для клика на ссылки
     links.forEach((link) => {
-      link.addEventListener("click", function () {
-        clearActiveLinks();
-        this.classList.add("active");
-      });
+        link.addEventListener("click", function() {
+            clearActiveLinks();
+            this.classList.add("active");
+        });
     });
-  
+
     // Обновление активного класса при прокрутке
     function updateActiveLinkOnScroll() {
-      let currentSection = "";
-  
-      // Определяем текущую секцию на основе прокрутки
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 70; // Учитываем высоту navbar
-        const sectionHeight = section.offsetHeight;
-  
-        if (
-          window.scrollY >= sectionTop &&
-          window.scrollY < sectionTop + sectionHeight
-        ) {
-          currentSection = section.getAttribute("id");
+        let currentSection = "";
+
+        // Определяем текущую секцию на основе прокрутки
+        sections.forEach((section) => {
+            const sectionTop = section.offsetTop - 70; // Учитываем высоту navbar
+            const sectionHeight = section.offsetHeight;
+
+            if (
+                window.scrollY >= sectionTop &&
+                window.scrollY < sectionTop + sectionHeight
+            ) {
+                currentSection = section.getAttribute("id");
+            }
+        });
+
+        // Обновляем активное состояние ссылок
+        clearActiveLinks();
+        const activeLink = document.querySelector(
+            `.nav-links .cir_border[href="#${currentSection}"]`
+        );
+        if (activeLink) {
+            activeLink.classList.add("active");
         }
-      });
-  
-      // Обновляем активное состояние ссылок
-      clearActiveLinks();
-      const activeLink = document.querySelector(
-        `.nav-links .cir_border[href="#${currentSection}"]`
-      );
-      if (activeLink) {
-        activeLink.classList.add("active");
-      }
     }
-  
+
     // Привязываем обработчик к событию прокрутки
     window.addEventListener("scroll", updateActiveLinkOnScroll);
 });
@@ -297,11 +298,11 @@ function toggleAuth() {
             return;
         }
 
-       // Проверка пароля: минимальная длина пароля 6 символов, хотя бы одна буква, одна цифра и одна заглавная буква
-if (password.length < 6 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
-    alert('Wrong password!');
-    return;
-}
+        // Проверка пароля: минимальная длина пароля 6 символов, хотя бы одна буква, одна цифра и одна заглавная буква
+        if (password.length < 6 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
+            alert('Wrong password!');
+            return;
+        }
 
 
         if (username === storedUsername && password === storedPassword) {
@@ -317,7 +318,7 @@ if (password.length < 6 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) ||
 }
 
 // Функция для регистрации
-document.getElementById('registrationForm').addEventListener('submit', function (e) {
+document.getElementById('registrationForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const username = document.getElementById('regUsername').value;
     const password = document.getElementById('regPassword').value;
@@ -332,19 +333,19 @@ document.getElementById('registrationForm').addEventListener('submit', function 
     }
 
     // Проверка пароля: минимальная длина 6 символов, хотя бы одна буква, одна цифра и одна заглавная буква
-const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/;
-if (!passwordPattern.test(password)) {
-    alert('Password must be at least 6 characters long, contain at least one uppercase letter, one lowercase letter, and one number!');
-    return;
-}
+    const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/;
+    if (!passwordPattern.test(password)) {
+        alert('Password must be at least 6 characters long, contain at least one uppercase letter, one lowercase letter, and one number!');
+        return;
+    }
 
 
-// Проверка номера телефона: казахстанский стандарт "8 775 460 48 52"
-const phonePattern = /^8\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/;
-if (!phonePattern.test(phone)) {
-    alert('Please enter a valid Kazakhstan phone number in the format: 8 775 460 48 52');
-    return;
-}
+    // Проверка номера телефона: казахстанский стандарт "8 775 460 48 52"
+    const phonePattern = /^8\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/;
+    if (!phonePattern.test(phone)) {
+        alert('Please enter a valid Kazakhstan phone number in the format: 8 775 460 48 52');
+        return;
+    }
 
 
 
@@ -388,4 +389,3 @@ document.addEventListener('keydown', function(event) {
         }
     }
 });
-
