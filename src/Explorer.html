@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tiny Airlines</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+</head>
+
+<body onload='if (window.location.href.substr(window.location.href.length - 6) == "#about") { introAboutLogoTransition(); }'>
+    <!--navbar-->
+    <nav class="navbar glass" style="height: 70px">
+        <span><a href="index.html" style="display: flex; align-items: center">
+                    <img class="img2" src="./img/mountain.png" width="40" style="margin: -25px -10px -25px -20px" />
+                    <h1 class="logo">&nbsp;Tiny Airlines</h1></a>
+                </span>
+            <ul class="nav-links">
+                <li>
+                    <a href="#home" id="pri" class="active cir_border">Home</a>
+                </li>
+                
+                <li>
+                    <div>
+                        <input type="checkbox" class="checkbox dark" id="checkbox" />
+                        <label for="checkbox" class="label">
+                            <i class="fa fa-moon-o"></i>
+                            <i class="fa fa-sun-o"></i>
+                            <div class="ball"></div>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+            <img src="./img/menu-btn.png" alt="" class="menu-btn" />
+        </nav>
+        <!--navbar-->
+
+        <header id="home" class="header4">
+            <div class="header-content2">
+                <h2 id="quote">Explore the colourful World</h2>
+                <div class="line"></div>
+                <h1>Explorer</h1>
+            </div>
+        </header>
+
+        <!--tours-->
+        <section class="tours" id="tours">
+            <div class="container row">
+                <div class="image-col">
+                    <div class="image-gallery">
+                        <img src="./img/Explorer1.jpeg" alt="Kazakhstan Steppes" />
+                        <img src="./img/Explorer2.jpeg" alt="Kazakhstan Mountains" />
+                        <img src="./img/Explorer3.jpeg" alt="Kazakhstan Culture" />
+                        <img src="./img/Explorer4.jpeg" alt="Kazakhstan Scenery" />
+                    </div>
+                </div>
+                <div class="col content-col">
+                    <h1 class="font-color">Unforgettable Kazakhstan Adventure Tours</h1>
+                    <div class="line"></div>
+                    <p class="inform">
+                        "Kazakhstan Explorer: From Urban Wonders to Natural Marvels"
+                        Experience the contrast of Kazakhstan’s vibrant cities and pristine nature! This tour combines the buzz of modern city life with serene landscapes, offering an unforgettable journey through the heart of Central Asia.
+        
+                        - Duration: 5-8 days (adjustable to your schedule).
+                        - Best Time to Visit: Summer (June-August) and early fall (September) for warm weather and lively city festivals.
+                        - Accommodation: Quality hotels and comfortable lodges with local charm and hospitality.
+                        <br>
+                        <b style="color: #a09e9e;">What's Included:</b>
+                        - Guided city and nature tours
+                        - Transfers within the country
+                        - Accommodation with breakfast
+                        - Local cuisine tasting
+                        - All admission fees and permits
+                        <br>
+                        <b style="color: #a09e9e;">Starting at $350</b>
+                    </p>
+                    <a href="book_a_tour.html" class="ctn ctn2">Order</a>
+                    <a href="about.html" class="ctn">See other tours</a>
+                </div>
+            </div>
+            <br /><br /><br /><br />
+        </section>        
+        <!--tours-->
+
+        <!-- Weather Section -->
+        <section id="weather">
+            <div class="weather-container">
+                <h2>Current Weather</h2>
+                <input type="text" id="cityInput" placeholder="Enter city name" />
+                <button id="getWeatherButton">Get Weather</button>
+                <div id="weatherInfo">
+                    <!-- Weather information will be displayed here -->
+                </div>
+            </div>
+        </section>
+        <!-- Weather Section -->
+
+        <!-- up scroll -->
+        <i class="arrow" onclick="topFunction()" id="upbtn"></i>
+        <!-- end -->
+
+        <!--footer-->
+        <section class="footer">
+            <span>Created By Nursaya, Madina, Gauharbek | &#169; 2024 All rights reserved.</span>
+        </section>
+        <!--footer-->
+
+        <script>
+            const apiKey = '58323461f4aa6d1f8c072bc0bde8ae2c';
+            const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
+
+            async function getWeather(city) {
+                const url = `${apiUrl}?q=${city}&appid=${apiKey}&units=metric`;
+
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        const weatherInfo = document.getElementById('weatherInfo');
+                        weatherInfo.innerHTML = `
+                            <h3>Weather in ${data.name}</h3>
+                            <p>Temperature: ${data.main.temp}°C</p>
+                            <p>Weather: ${data.weather[0].description}</p>
+                        `;
+                    } else {
+                        const weatherInfo = document.getElementById('weatherInfo');
+                        weatherInfo.innerHTML = `<p>Error: ${data.message}</p>`;
+                    }
+                } catch (error) {
+                    console.error('Request failed', error);
+                }
+            }
+
+            document.getElementById('getWeatherButton').addEventListener('click', () => {
+                const city = document.getElementById('cityInput').value;
+                if (city) {
+                    getWeather(city);
+                } else {
+                    alert('Please enter a city name.');
+                }
+            });
+        </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="js/script.js"></script>
+        <script src="js/api.js"></script>
+    </body>
+
+</html>

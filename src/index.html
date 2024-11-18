@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tiny Airlines</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
+
+</head>
+
+<body onload='if (window.location.href.substr(window.location.href.length - 6) == "#about") { introAboutLogoTransition(); }'>
+
+    <!--navbar-->
+    <nav class="navbar glass" style="height: 70px">
+        <span>
+            <a href="#home" style="display: flex; align-items: center">
+                <img class="img2" src="./img/mountain.png" width="40" style="margin: -25px -10px -25px -20px" />
+                <h1 class="logo">&nbsp;Tiny Airlines</h1>
+            </a>
+        </span>
+        <ul class="nav-links">
+            <li><a href="#home" id="pri" class="active cir_border">Home</a></li>
+            <li><a href="#events" id="sec" class="cir_border">Events</a></li>
+            <li><a href="#about" id="quint" class="cir_border">About</a></li>
+            <li><a href="#tours" id="quad" class="cir_border">Tours</a></li>
+            <li><a href="#explore" id="tri" class="cir_border">Comments</a></li>
+            <li><a href="#contact" id="hept" class="cir_border">Contact</a></li>
+            <li>
+                <div>
+                    <input type="checkbox" class="checkbox dark" id="checkbox" />
+                    <label for="checkbox" class="label">
+                        <i class="fa fa-moon-o"></i>
+                        <i class="fa fa-sun-o"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+            </li>
+            <li>
+                <button id="authBtn" class="cir_border" onclick="toggleAuth()">Log In</button>
+            </li>
+        </ul>
+        <img src="./img/menu-btn.png" alt="" class="menu-btn" />
+    </nav>
+        <!--navbar-->
+
+        <header id="home">
+            <div class="header-content">
+                <h2 id="display-greeting"></h2>
+                <div class="line"></div>
+                    <div class="col-12 text-center mt-3">
+                        <h5 id="display-time" class="text-white"></h5> <!-- Область для отображения времени -->
+                    </div>
+                    <div class="col-12 text-center mt-3">
+                        <button id="show-time-btn" class="btn btn-primary">Show time</button> <!-- Кнопка для показа времени -->
+                    </div>  <!-- Элемент для приветствия -->
+                <h2 id="quote">Explore the colourful World</h2>
+                <h1>A WONDERFUL GIFT</h1>
+                <a
+                
+                    href="about.html"
+                    class="ctn"
+                    onclick='removeall(); $("#quad").css("border", "2px solid whitesmoke"); $("#quad").css("border-radius", "20px");'
+                >Learn more</a>
+            </div>
+        </header>
+
+        <!--Events-->
+        <section class="events" id="events">
+            <div class="container">
+                <div class="title">
+                    <h1 class="dark">Upcoming Events</h1>
+                    <div class="line"></div>
+                </div>
+                <div class="row">
+                    <article class="card col">
+                        <img style="width: 375px;" class="card-img" src="./img/img1.jpg" />
+                        <h4 class="dark">Cultural Heritage</h4>
+                        <p class="font-color">
+                            Embark on the ultimate adventure to witness themajestic Mount Everest, 
+                                the highest peak in the world. This expedition promises a blend of 
+                                 awe-inspiring landscapes, cultural immersion, and a thrilling trekking 
+                                  experience.
+                        </p>
+                        <a href="about.html" class="ctn">Order</a>
+                    </article>
+                    <article class="card col">
+                        <img style="width: 375px;" src="./img/explorer6.webp" height="80%"/>
+                        <h4 class="dark">Unforgettable Kazakhstan <br> Adventure Tours</h4>
+                        <p class="font-color">
+                            Explore Kazakhstan's rich traditions and stunning landscapes, from ancient cities to majestic mountains. A blend of culture, nature, and history awaits, creating unforgettable memories. 
+
+                        </p>
+                        <a href="about.html" class="ctn">Order</a>
+                    </article>
+                    <article class="card col">
+                        <img style="width: 375px;" src="./img/Journey_Kazakhstan3.jpg" />
+                        <h4 class="dark">Journey through Kazakhstan</h4>
+                        <p class="font-color">
+                            Immerse yourself in the stunning natural and cultural wealth of Kazakhstan! Our tours offer a unique opportunity to explore the vast steppes, scenic mountains, and ancient traditions of this remarkable region.
+
+                        </p>
+                        <a href="about.html" class="ctn">Order</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!--Events-->
+        <!-- About -->
+        <section id="about">
+            <div class="title">
+                <h1 class="font-color">About Us</h1>
+                <div class="line"></div>
+            </div>
+            <br />
+            <div id="about_us">
+                <div class="boxx">
+                    <div class="containerx">
+                        <input type="radio" name="slider" id="item-1" checked />
+                        <input type="radio" name="slider" id="item-2" />
+                        <input type="radio" name="slider" id="item-3" />
+                        <div class="cards">
+                            <label class="cardt" for="item-1" id="col-img-1">
+                                <img src="./img/carousel-img4.jpg" />
+                            </label>
+                            <label class="cardt" for="item-2" id="col-img-2">
+                                <img src="./img/carousel-img5.jpg" />
+                            </label>
+                            <label class="cardt" for="item-3" id="col-img-3">
+                                <img src="./img/carousel-img6.jpg" />
+                            </label>
+                            
+                        </div>
+                    </div>
+                    <span id="about-quad">
+                        
+                            <center>
+                                
+                                <h1 class="logo" style="font-size: 50px">
+                                    Embark on Dreams, Explore the Extraordinary: Your Journey, Our Passion.
+                                </h1>
+                            </center>
+                        
+                    </span>
+        </div>
+        </div>
+        </section>
+        <!-- About -->
+
+
+
+        <!--tours-->
+        <section class="tours" id="tours">
+            <div class="container row">
+                <div class="col content-col">
+                    <h1 class="font-color">UPCOMING TOURS & DESTINATION</h1>
+                    <div class="line"></div>
+                    <p>
+                        Kazakhstan offers a variety of upcoming tours for 2024 and 2025, including small group and private packages that explore cities like Almaty and Astana, as well as natural attractions such as Charyn Canyon and Kolsai Lakes. Travelers can experience the
+                        country's rich cultural heritage and diverse landscapes through guided tours that highlight its unique blend of modernity and tradition. For those seeking adventure, options include trekking in the Tian Shan mountains and exploring
+                        the vast steppes, providing an immersive experience into Kazakhstan's natural beauty.
+                    </p>
+                    <a href="about.html" class="ctn">Learn more</a>
+                </div>
+                <div class="image-col">
+                    <div class="image-gallery">
+                        <img style="width: 300px; height: 150px;" src="./img/Explorer3.jpeg" alt="" />
+                        <img style="width: 300px; height: 150px;" src="./img/Explorer2.jpeg" alt="" />
+                        <img style="width: 300px; height: 150px;" src="./img/Journey_Kazakhstan1.jpg" alt="" />
+                        <img style="width: 300px; height: 150px;" src="./img/Cultural_Heritage3.jpeg" alt="" />
+                    </div>
+                </div>
+            </div>
+            <br /><br /><br /><br />
+        </section>
+        <!--tours-->
+
+        <!--Explore-->
+        <section id="explore">
+            <div class="explore">
+                <h1 style="color: white;">Register</h1>
+
+                <form id="registrationForm">
+                    <input type="text" id="regUsername" placeholder="Username" required />
+                    <input type="password" id="regPassword" placeholder="Password" required />
+                    <input type="tel" id="regPhone" placeholder="Phone Number"  required />
+
+
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        </section>
+        
+        <div id="authModal" class="auth-modal" style="display: none;">
+            <h1>Log In</h1>
+            <form id="loginForm">
+                <input type="text" id="loginUsername" placeholder="Username" required />
+                <input type="password" id="loginPassword" placeholder="Password" required />
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+
+        <!--Explore-->
+
+
+
+        <!-- contact -->
+        <section id="contact">
+            <div class="title2">
+                <div class="left_contact">
+                    <h1 class="font-color">Review</h1>
+                    <div class="line"></div>
+                </div>
+                <div class="right_contact">
+                    <h1 class="font-color">Contact Us</h1>
+                    <div class="line"></div>
+                </div>
+
+            </div>
+            <div class="contact_us">
+                <form class="cform" action="" method="post">
+                    <div class="crow-message">
+                        <h1 class="color">Send us a message</h1>
+                        <div></div>
+                    </div>
+                    <div class="crow-in">
+                        <input type="text" id="name" name="name" placeholder="Your name" />
+                        <input type="text" id="email" name="email" placeholder="Your Email id" />
+                    </div>
+                    <div class="crow">
+                        <div class="ccol-left">
+                            <select name="country" id="country">
+                                <option value="India">India</option>
+                                <option value="Russia">Russia</option>
+                                <option value="usa" selected>Kazakhstan</option>
+                                <option value="Japan">Japan</option>
+                                <option value="France">France</option>
+                                <option value="Brazil">Brazil</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="crow">
+                        <div class="ccol-left">
+                            <textarea type="text" id="remarks" name="remarks" placeholder="Your Remarks....." style="height: 150px"></textarea>
+                        </div>
+                    </div>
+                    <input class="crow-s" type="submit" value="Submit" />
+                </form>
+                <div class="cbox">
+                    <div>
+                        <p class="cbox-message">
+                            Prefer some other way ?<br />Reach us by using the details given below
+                        </p>
+                        <div class="cbox-line"></div>
+                    </div>
+                    <div class="c_boxx">
+                        <a href="mailto:abc@gmail.com"><i class="fa fa-envelope"></i>
+                            Mail: tourism@tiny.airlines.com
+                        </a>
+                    </div>
+                    <div class="c_boxx">
+                        <a href="tel:+91-12345-67890"><i class="fa fa-phone"></i>
+                            Phone: (+7) 7777777777
+                        </a>
+                    </div>
+                    <div class="c_boxx">
+                        <a href="#"><i class="fa fa-map-marker"></i>
+                            Location: Tashenova 9/3, Astana, Kazakhstan
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- contact  -->
+
+
+        <!-- up scroll -->
+        <i class="arrow" onclick="topFunction()" id="upbtn"></i>
+        <!-- end -->
+        <!--footer-->
+        <section class="footer">
+            <span>Created By Nursaya, Madina, Gauharbek | &#169; 2024 All rights 
+              reserved.</span 
+          > 
+            
+        </section>
+        <!--footer-->
+
+        <script>
+            const menuBtn = document.querySelector(".menu-btn");
+            const navlinks = document.querySelector(".nav-links");
+
+            menuBtn.addEventListener("click", () => {
+                navlinks.classList.toggle("mobile-menu");
+            });
+        </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="js/script.js"></script>
+        <script type="text/javascript" src="slick/slick.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(".center").slick({
+                    dots: true,
+                    infinite: true,
+                    centerMode: true,
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                 });   
+            });
+          </script>
+
+    </body>
+</html>
