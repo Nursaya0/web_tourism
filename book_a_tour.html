@@ -52,44 +52,42 @@
         </nav> 
         <!--navbar--> 
  
-        <header id="home" class="header9"> 
-            <div class="header-content3"> 
+        <header id="home" class="header9">
+            <div class="header-content3">
+                <h1>Book a tour for yourself</h1>
                 <form class="cform2" action="" method="post">
-                    <div class="crow-message">
-                        <h1 class="color">Book a tour for yourself</h1>
-                        <div></div>
+                    <div class="crow">
+                        <h3>Filter by City</h3>
+                        <select id="cityFilter" onchange="filterToursByCity()">
+                            <option value="all">All Cities</option>
+                            <option value="Almata">Almata</option>
+                            <option value="Astana">Astana</option>
+                        </select>
                     </div>
                     <div class="crow">
-                        <div class="ccol-left">
-                            <h3>Select tour</h3>
-                            <select name="tour" id="tour" onchange="showPayBill()">
-                                <option value="not-selected"> Please select the tour</option>
-                                <option value="500$" >Journey through Kazakhstan(Almata)</option>
-                                <option value="300$">Cultural heritage(Astana)</option>
-                                <option value="500$">Unforgettable Kazakhstan Adventure Tours(Almata)</option>
-                            </select>
-                        </div>
+                        <h3>Select Tour</h3>
+                        <select name="tour" id="tour">
+                            <option value="not-selected">Please select the tour</option>
+                        </select>
                     </div>
                     <div class="crow">
                         <h3>Number of people</h3>
-                    <div class="crow-in">
-                        <input required id="people" type="number" placeholder="Number of adults"/>
-                        <input id="people" type="number" placeholder="Number of children"/>
-                    </div>
+                        <div class="crow-in">
+                            <input required id="adults" type="number" placeholder="Number of adults" />
+                            <input id="children" type="number" placeholder="Number of children" />
+                        </div>
                     </div>
                     <div class="crow">
                         <h3>Date</h3>
-                        <div class="ccol-left">
-                            <input required type="date" value="2023-11-25" min="2023-11-25" max="2023-12-25"/>
-                        </div>
+                        <input required type="date" value="2023-11-25" min="2023-11-25" max="2023-12-25" />
                     </div>
                     <div class="crow-in">
-                    <p id="PayBill"></p>
-                    <input class="crow-s" type="submit" value="Order" />
+                        <p id="PayBill"></p>
+                        <input class="crow-s" type="submit" value="Order" />
                     </div>
                 </form>
-            </div> 
-        </header> 
+            </div>
+        </header>
 
 
         
