@@ -274,6 +274,64 @@ document.addEventListener("DOMContentLoaded", function() {
 // Логика авторизации
 let isLoggedIn = false; // Переменная для отслеживания состояния авторизации
 
+// Функция для извлечения имени пользователя без домена
+function extractUsername(email) {
+    const emailPattern = /^([a-zA-Z0-9._%+-]+)@gmail\.com$/;
+    const match = email.match(emailPattern);
+    return match ? match[1] : email; // Возвращаем часть до @ или полное значение, если формат неверный
+}
+
+// Функция для получения приветствия по времени суток
+function getGreeting() {
+    const now = new Date();
+    const hour = now.getHours();
+    let greeting;
+
+    switch (true) {
+        case hour >= 5 && hour < 12:
+            greeting = "Good Morning!";
+            break;
+        case hour >= 12 && hour < 17:
+            greeting = "Good Afternoon!";
+            break;
+        case hour >= 17 && hour < 21:
+            greeting = "Good Evening!";
+            break;
+        default:
+            greeting = "Good Night!";
+            break;
+    }
+
+    return greeting;
+}
+
+// Функция для отображения приветствия
+function displayGreeting() {
+    const greetingElement = document.getElementById('display-greeting');
+    const storedEmail = localStorage.getItem('username');
+    const greeting = getGreeting();
+
+    if (storedEmail) {
+        const extractedUsername = extractUsername(storedEmail);
+        greetingElement.textContent = `${greeting} Welcome, ${extractedUsername}!`;
+    } else {
+        greetingElement.textContent = `${greeting} Welcome, guest!`;
+    }
+}
+
+// Функция для проверки состояния авторизации при загрузке страницы
+function checkLoginStatus() {
+    const storedEmail = localStorage.getItem('username');
+    const storedPassword = localStorage.getItem('password');
+
+    if (storedEmail && storedPassword) {
+        isLoggedIn = true;
+        document.getElementById('authBtn').textContent = 'Log Out'; // Меняем текст на "Log Out"
+        displayGreeting(); // Обновляем приветствие с именем пользователя
+    }
+}
+
+// Функция для переключения состояния авторизации
 function toggleAuth() {
     const authBtn = document.getElementById('authBtn');
 
@@ -287,17 +345,17 @@ function toggleAuth() {
         displayGreeting(); // Обновляем приветствие после выхода
     } else {
         // Логика входа в систему
-        const username = prompt("Enter your username (mail required):"); // Запрашиваем имя пользователя (email)
+        const email = prompt("Enter your email (Gmail required):"); // Запрашиваем email
         const password = prompt("Enter your password:"); // Запрашиваем пароль
 
-        const storedUsername = localStorage.getItem('username'); // Получаем сохраненное имя пользователя
+        const storedEmail = localStorage.getItem('username'); // Получаем сохраненный email
         const storedPassword = localStorage.getItem('password'); // Получаем сохраненный пароль
 
-        // Проверяем, является ли username email и соответствует ли домен Gmail
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        // Проверяем, является ли email корректным и заканчивается на @gmail.com
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
-        if (!emailPattern.test(username)) {
-            alert('Please enter a valid mail address!');
+        if (!emailPattern.test(email)) {
+            alert('Please enter a valid Gmail address!');
             return;
         }
 
@@ -307,12 +365,11 @@ function toggleAuth() {
             return;
         }
 
-
-        if (username === storedUsername && password === storedPassword) {
+        if (email === storedEmail && password === storedPassword) {
             isLoggedIn = true;
             authBtn.textContent = 'Log Out'; // Меняем текст на "Log Out"
             alert('Login successful!');
-            localStorage.setItem('username', username); // Сохраняем имя пользователя
+            localStorage.setItem('username', email); // Сохраняем email пользователя
             displayGreeting(); // Обновляем приветствие с именем пользователя
         } else {
             alert('Invalid username or password!');
@@ -320,54 +377,16 @@ function toggleAuth() {
     }
 }
 
-// Функция для регистрации
-document.getElementById('registrationForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const username = document.getElementById('regUsername').value;
-    const password = document.getElementById('regPassword').value;
-    const phone = document.getElementById('regPhone').value;
+// Событие загрузки страницы
+window.onload = function () {
+    checkLoginStatus();
+};
 
-
-    // Проверка на наличие email и домена gmail
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailPattern.test(username)) {
-        alert('Please enter a valid Gmail address!');
-        return;
-    }
-
-    // Проверка пароля: минимальная длина 6 символов, хотя бы одна буква, одна цифра и одна заглавная буква
-    const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/;
-    if (!passwordPattern.test(password)) {
-        alert('Password must be at least 6 characters long, contain at least one uppercase letter, one lowercase letter, and one number!');
-        return;
-    }
-
-
-    // Проверка номера телефона: казахстанский стандарт "8 775 460 48 52"
-    const phonePattern = /^8\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/;
-    if (!phonePattern.test(phone)) {
-        alert('Please enter a valid Kazakhstan phone number in the format: 8 775 460 48 52');
-        return;
-    }
+// Пример кнопки для авторизации
+document.getElementById('authBtn').addEventListener('click', toggleAuth);
 
 
 
-    if (username && password && phone) {
-        localStorage.setItem('username', username);
-        localStorage.setItem('password', password);
-        localStorage.setItem('phone', phone);
-        alert('Registration successful! You can now log in.');
-    } else {
-        alert('Please fill out all fields!');
-    }
-    // Очистка полей после успешной регистрации
-    document.getElementById('regUsername').value = '';
-    document.getElementById('regPassword').value = '';
-    document.getElementById('regPhone').value = '';
-
-});
-
-// Получение всех навигационных элементов с классом `.cir_border`
 const navItems = document.querySelectorAll('.cir_border');
 let currentIndex = 0;
 
