@@ -49,8 +49,8 @@ $("input").on("change", function() {
 
 // Light/Dark toggle
 const checkbox = document.getElementById("checkbox");
-const themeChangeSound = new Audio('src/sound/theme.mp3'); // Загрузка звука
-themeChangeSound.volume = 0.5; // Установить громкость
+// const themeChangeSound = new Audio('sound/theme.mp3'); // Загрузка звука
+// themeChangeSound.volume = 0.5; // Установить громкость
 
 // Функция для применения сохраненной темы при загрузке страницы
 function applySavedTheme() {
@@ -184,9 +184,12 @@ function displayGreeting() {
 
     // Показываем имя пользователя, если он авторизован
     const username = localStorage.getItem('username');
+    console.log(username);
+    const extractedText = username.split('@')[0];
+
     if (username && isLoggedIn) {
         const usernameElement = document.createElement('div');
-        usernameElement.textContent = `Welcome, ${username}!`;
+        usernameElement.textContent = `Welcome, ${extractedText}!`;
         greetingElement.appendChild(usernameElement);
     }
 }
@@ -194,9 +197,9 @@ function displayGreeting() {
 // Вызываем функцию для отображения приветствия при загрузке страницы
 window.onload = displayGreeting;
 
-const backgroundMusic = new Audio('src/sound/main.mp3');
-backgroundMusic.loop = true;
-backgroundMusic.volume = 0.5;
+// const backgroundMusic = new Audio('sound/main.mp3');
+// backgroundMusic.loop = true;
+// backgroundMusic.volume = 0.5;
 
 window.addEventListener('focus', () => backgroundMusic.play());
 window.addEventListener('blur', () => backgroundMusic.pause());
