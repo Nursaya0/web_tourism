@@ -271,11 +271,35 @@ document.addEventListener("DOMContentLoaded", function() {
 // Логика авторизации
 let isLoggedIn = false; // Переменная для отслеживания состояния авторизации
 
+// Функция для проверки состояния авторизации при загрузке страницы
+function checkLoginStatus() {
+    const storedUsername = localStorage.getItem('username');
+    const storedPassword = localStorage.getItem('password');
+
+    if (storedUsername && storedPassword) {
+        isLoggedIn = true;
+        document.getElementById('authBtn').textContent = 'Log Out'; // Меняем текст на "Log Out"
+        displayGreeting(); // Обновляем приветствие с именем пользователя
+    }
+}
+
+// Функция для вывода приветствия
+function displayGreeting() {
+    const greeting = document.getElementById('greeting');
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+        greeting.textContent = `Hello, ${storedUsername}!`;
+    } else {
+        greeting.textContent = 'Hello, guest!';
+    }
+}
+
+// Функция для переключения состояния авторизации
 function toggleAuth() {
     const authBtn = document.getElementById('authBtn');
 
     if (isLoggedIn) {
-        // Логика выхода из системы
+        // выход
         isLoggedIn = false;
         authBtn.textContent = 'Log In'; // Меняем текст на "Log In"
         localStorage.removeItem('username'); // Удаляем данные пользователя из localStorage
@@ -283,12 +307,12 @@ function toggleAuth() {
         alert('You have logged out!');
         displayGreeting(); // Обновляем приветствие после выхода
     } else {
-        // Логика входа в систему
+        //выход
         const username = prompt("Enter your username (mail required):"); // Запрашиваем имя пользователя (email)
         const password = prompt("Enter your password:"); // Запрашиваем пароль
 
         const storedUsername = localStorage.getItem('username'); // Получаем сохраненное имя пользователя
-        const storedPassword = localStorage.getItem('password'); // Получаем сохраненный пароль
+        const storedPassword = localStorage.getItem('password'); 
 
         // Проверяем, является ли username email и соответствует ли домен Gmail
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -304,7 +328,6 @@ function toggleAuth() {
             return;
         }
 
-
         if (username === storedUsername && password === storedPassword) {
             isLoggedIn = true;
             authBtn.textContent = 'Log Out'; // Меняем текст на "Log Out"
@@ -318,12 +341,11 @@ function toggleAuth() {
 }
 
 // Функция для регистрации
-document.getElementById('registrationForm').addEventListener('submit', function(e) {
+document.getElementById('registrationForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const username = document.getElementById('regUsername').value;
     const password = document.getElementById('regPassword').value;
     const phone = document.getElementById('regPhone').value;
-
 
     // Проверка на наличие email и домена gmail
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -339,15 +361,12 @@ document.getElementById('registrationForm').addEventListener('submit', function(
         return;
     }
 
-
-    // Проверка номера телефона: казахстанский стандарт "8 775 460 48 52"
+    
     const phonePattern = /^8\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/;
     if (!phonePattern.test(phone)) {
         alert('Please enter a valid Kazakhstan phone number in the format: 8 775 460 48 52');
         return;
     }
-
-
 
     if (username && password && phone) {
         localStorage.setItem('username', username);
@@ -357,14 +376,17 @@ document.getElementById('registrationForm').addEventListener('submit', function(
     } else {
         alert('Please fill out all fields!');
     }
-    // Очистка полей после успешной регистрации
+
+    
     document.getElementById('regUsername').value = '';
     document.getElementById('regPassword').value = '';
     document.getElementById('regPhone').value = '';
-
 });
 
-// Получение всех навигационных элементов с классом `.cir_border`
+
+checkLoginStatus();
+
+
 const navItems = document.querySelectorAll('.cir_border');
 let currentIndex = 0;
 
