@@ -356,7 +356,7 @@ function toggleAuth() {
             return;
         }
 
-        
+        // Проверка пароля: минимальная длина пароля 6 символов, хотя бы одна буква, одна цифра и одна заглавная буква
         if (password.length < 6 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
             alert('Wrong password!');
             return;
@@ -364,22 +364,22 @@ function toggleAuth() {
 
         if (email === storedEmail && password === storedPassword) {
             isLoggedIn = true;
-            authBtn.textContent = 'Log Out'; 
+            authBtn.textContent = 'Log Out'; // Меняем текст на "Log Out"
             alert('Login successful!');
-            localStorage.setItem('username', email); 
-            displayGreeting(); 
+            localStorage.setItem('username', email); // Сохраняем email пользователя
+            displayGreeting(); // Обновляем приветствие с именем пользователя
         } else {
             alert('Invalid username or password!');
         }
     }
 }
 
-
+// Событие загрузки страницы
 window.onload = function () {
     checkLoginStatus();
 };
 
-
+// Пример кнопки для авторизации
 document.getElementById('authBtn').addEventListener('click', toggleAuth);
 
 
